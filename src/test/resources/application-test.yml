@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:sqlite:target/test-app.db
+    driver-class-name: org.sqlite.JDBC
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    properties:
+      hibernate:
+        dialect: org.hibernate.community.dialect.SQLiteDialect
+
+app:
+  jwt:
+    secret: test-only-secret-value-0123456789abcdefghijklmnopqrstuvwxyz-ABCDE
+    access-token-expiration-seconds: 900
+    refresh-token-expiration-seconds: 604800
