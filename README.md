@@ -14,6 +14,8 @@ Spring Boot 3 (Java 21) modular monolith backend with:
 3. Start app:
    - `mvn spring-boot:run`
 
+> Note: refresh tokens are rotated per user, so issuing a new token pair invalidates previous refresh tokens for that user.
+
 ## Test
 
 - `mvn test`

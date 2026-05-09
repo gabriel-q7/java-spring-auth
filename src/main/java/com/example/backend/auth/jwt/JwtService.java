@@ -1,6 +1,7 @@
 package com.example.backend.auth.jwt;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,7 @@ public class JwtService {
         try {
             Claims claims = extractClaims(token);
             return claims.getExpiration().after(new Date());
-        } catch (Exception ex) {
+        } catch (JwtException | IllegalArgumentException ex) {
             return false;
         }
     }

@@ -1,5 +1,6 @@
 package com.example.backend.auth.security;
 
+import com.example.backend.auth.entity.Credential;
 import com.example.backend.auth.repository.CredentialRepository;
 import com.example.backend.users.entity.User;
 import com.example.backend.users.repository.UserRepository;
@@ -25,7 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         String passwordHash = credentialRepository.findByUserId(user.getId())
-                .map(c -> c.getPasswordHash())
+                .map(Credential::getPasswordHash)
                 .orElseThrow(() -> new UsernameNotFoundException("Credentials not found"));
 
         return new CustomUserDetails(user.getId(), user.getUsername(), passwordHash);

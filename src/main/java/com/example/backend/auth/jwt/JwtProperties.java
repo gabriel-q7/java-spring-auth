@@ -1,12 +1,24 @@
 package com.example.backend.auth.jwt;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.validation.annotation.Validated;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 @ConfigurationProperties(prefix = "app.jwt")
+@Validated
 public class JwtProperties {
 
+    @NotBlank
+    @Size(min = 64, message = "JWT secret must be at least 64 characters")
     private String secret;
+
+    @Positive
     private long accessTokenExpirationSeconds;
+
+    @Positive
     private long refreshTokenExpirationSeconds;
 
     public String getSecret() {
